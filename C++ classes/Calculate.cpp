@@ -24,6 +24,70 @@ Calculate Calculate::operator-() const
 	return obj;
 }
 
+Calculate& Calculate::operator++()
+{
+	if (m_a == 2147483647)
+	{
+		m_a = -2147483648;
+	}
+	else
+	{
+		++m_a;
+	}
+
+	if (m_b == 2147483647)
+	{
+		m_b = -2147483648;
+	}
+	else
+	{
+		++m_b;
+	}
+
+	return *this;
+}
+
+Calculate& Calculate::operator--()
+{
+	if (m_a == -2147483648)
+	{
+		m_a = 2147483647;
+	}
+	else
+	{
+		--m_a;
+	}
+
+	if (m_b == -2147483648)
+	{
+		m_b = 2147483647;
+	}
+	else
+	{
+		--m_b;
+	}
+
+	return *this;
+}
+
+Calculate Calculate::operator++(int)
+{
+	Calculate temp(m_a, m_b);
+
+	++(*this);
+
+	return temp;
+}
+
+Calculate Calculate::operator--(int)
+{
+	Calculate temp(m_a, m_b);
+
+	--(*this);
+
+	return temp;
+}
+
 Calculate operator+(const Calculate& obj1, const Calculate& obj2)
 {
 	Calculate obj(obj1.getA() + obj2.getA(), obj1.getB() + obj2.getB());

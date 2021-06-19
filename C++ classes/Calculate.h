@@ -21,7 +21,10 @@ public:
 
 	bool operator!() const; // 0 - если инициализирован по умолчанию, 1 - заданы другие поля
 	Calculate operator-() const; // унарный минус
-
+	Calculate& operator++(); // преинкремент полей
+	Calculate& operator--(); // предекремент полей
+	Calculate operator++(int); // постинкремент полей
+	Calculate operator--(int); // постдекремент полей
 };
 
 Calculate operator+(const Calculate& obj1, const Calculate& obj2); // бинарный плюс
