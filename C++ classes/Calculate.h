@@ -13,10 +13,16 @@ public:
 	}
 
 	void setValues(int x, int y);
-	int getA() { return m_a; }
-	int getB() { return m_b; }
-	void printValues();
 
-	Calculate operator+(const Calculate& obj1, const Calculate& obj2);
+	int getA() const { return m_a; }
+	int getB() const { return m_b; }
+
+	void printValues(); // распечатка полей
+
+	bool operator!() const; // 0 - если инициализирован по умолчанию, 1 - заданы другие поля
+	Calculate operator-() const; // унарный минус
+
 };
 
+Calculate operator+(const Calculate& obj1, const Calculate& obj2); // бинарный плюс
+Calculate operator-(const Calculate& obj1, const Calculate& obj2); // бинарный минус
