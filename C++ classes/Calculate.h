@@ -25,7 +25,21 @@ public:
 	Calculate& operator--(); // предекремент полей
 	Calculate operator++(int); // постинкремент полей
 	Calculate operator--(int); // постдекремент полей
+
+	Calculate& operator+=(const int num);
+	Calculate& operator+=(const Calculate &obj);
+	Calculate& operator-=(const int num);
+	Calculate& operator-=(const Calculate& obj);
+
+	friend std::ostream& operator<<(std::ostream& out, Calculate& obj);
 };
 
 Calculate operator+(const Calculate& obj1, const Calculate& obj2); // бинарный плюс
+Calculate operator+(const Calculate& obj1, const int num); // бинарный плюс
+Calculate operator+(const int num, const Calculate& obj); // бинарный плюс
+
 Calculate operator-(const Calculate& obj1, const Calculate& obj2); // бинарный минус
+Calculate operator-(const Calculate& obj, const int num); // бинарный минус
+Calculate operator-(const int num, const Calculate& obj); // бинарный минус
+
+std::ostream& operator<<(std::ostream &out, Calculate &obj);

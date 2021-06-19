@@ -88,10 +88,52 @@ Calculate Calculate::operator--(int)
 	return temp;
 }
 
+Calculate& Calculate::operator+=(const int num)
+{
+	this->m_a += num;
+	this->m_b += num;
+	return *this;
+}
+
+Calculate& Calculate::operator+=(const Calculate &obj)
+{
+	this->m_a += obj.m_a;
+	this->m_b += obj.m_b;
+	return *this;
+}
+
+Calculate& Calculate::operator-=(const int num)
+{
+	this->m_a -= num;
+	this->m_b -= num;
+	return *this;
+}
+
+Calculate& Calculate::operator-=(const Calculate& obj)
+{
+	this->m_a -= obj.m_a;
+	this->m_b -= obj.m_b;
+	return *this;
+}
+
 Calculate operator+(const Calculate& obj1, const Calculate& obj2)
 {
 	Calculate obj(obj1.getA() + obj2.getA(), obj1.getB() + obj2.getB());
 	return obj;
+}
+
+Calculate operator+(const Calculate& obj, const int num)
+{
+	Calculate temp(obj.getA() + num, obj.getB() + num);
+
+	return temp;
+}
+
+Calculate operator+(const int num, const Calculate& obj)
+{
+	Calculate temp(num + obj.getA(), num + obj.getB());
+
+	return temp;
 }
 
 Calculate operator-(const Calculate& obj1, const Calculate& obj2)
@@ -100,4 +142,23 @@ Calculate operator-(const Calculate& obj1, const Calculate& obj2)
 	return obj;
 }
 
+Calculate operator-(const Calculate& obj, const int num)
+{
+	Calculate temp(obj.getA() - num, obj.getB() - num);
+
+	return temp;
+}
+
+Calculate operator-(const int num, const Calculate& obj)
+{
+	Calculate temp(num - obj.getA(), num - obj.getB());
+
+	return temp;
+}
+
+std::ostream& operator<<(std::ostream& out, Calculate& obj)
+{
+	out << "m_a = " << obj.m_a << std::endl << "m_b = " << obj.m_b << std::endl;
+	return out;
+}
 
