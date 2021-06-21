@@ -3,9 +3,9 @@
 
 int main()
 {
-	Calculate obj1;
-	Calculate obj2;
-	Calculate obj3;
+	Calculate<int, int> obj1(0,0);
+	Calculate<int, int> obj2(0,0);
+	Calculate<int, int> obj3(0,0);
 
 	obj1.setValues(6,1);
 	obj2.setValues(34,3623);
