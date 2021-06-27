@@ -27,6 +27,8 @@ void Tree::deleteBranch(Node* tree)
 	{
 		deleteBranch(tree->left);
 		deleteBranch(tree->right);
+		
+		//Зануление КОПИИ(!!!) корня. Корень зануляется в Clear()!!!
 		delete tree;
 		tree = nullptr;
 	}
