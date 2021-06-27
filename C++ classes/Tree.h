@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 class Tree;
 
@@ -14,6 +15,16 @@ class Tree
 {
 private:
 	Node* ptr; // корень дерева
+
+	//Низкоуровневые методы класса 
+	Node* addNode(int value, Node* tree);
+
+	void deleteBranch(Node* tree);
+
+	void printPrefix(Node* tree);
+	void printPostfix(Node* tree);
+	void printInfix(Node* tree);
+
 public:
 	Tree()
 	{
@@ -28,15 +39,10 @@ public:
 		}
 	}
 
-	Node* addNode(int value, Node* tree);
+	// Высокоуровневые методы класса
 	void Add(int value) { ptr = addNode(value, ptr); }
 
-	void deleteBranch(Node* tree);
-	void Clear() { deleteBranch(ptr); }
-
-	void printPrefix(Node* tree);
-	void printPostfix(Node* tree);
-	void printInfix(Node* tree);
+	void Clear() { deleteBranch(ptr); ptr = nullptr; }
 
 	void PrefixTree() { printPrefix(ptr); }
 	void PostfixTree() { printPostfix(ptr); }

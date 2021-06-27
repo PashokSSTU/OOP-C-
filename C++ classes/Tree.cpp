@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Tree.h"
 
 Node* Tree::addNode(int value, Node* tree)
@@ -29,35 +28,57 @@ void Tree::deleteBranch(Node* tree)
 		deleteBranch(tree->left);
 		deleteBranch(tree->right);
 		delete tree;
+		tree = nullptr;
 	}
 }
 
 void Tree::printPrefix(Node* tree)
 {
-	if (tree != nullptr)
+	if (!isEmpty())
 	{
-		std::cout << tree->field << " ";
-		printPrefix(tree->left);
-		printPrefix(tree->right);
+		if (tree != nullptr)
+		{
+			std::cout << tree->field << " ";
+			printPrefix(tree->left);
+			printPrefix(tree->right);
+		}
+	}
+	else
+	{
+		std::cout << std::endl << "Error! Tree is empty!" << std::endl;
 	}
 }
 
 void Tree::printPostfix(Node* tree)
 {
-	if (tree != nullptr)
+	if (!isEmpty())
 	{
-		printPostfix(tree->left);
-		printPostfix(tree->right);
-		std::cout << tree->field << " ";
+		if (tree != nullptr)
+		{
+			printPrefix(tree->left);
+			printPrefix(tree->right);
+			std::cout << tree->field << " ";
+		}
+	}
+	else
+	{
+		std::cout << std::endl << "Error! Tree is empty!" << std::endl;
 	}
 }
 
 void Tree::printInfix(Node* tree)
 {
-	if (tree != nullptr)
+	if (!isEmpty())
 	{
-		printInfix(tree->left);
-		std::cout << tree->field << " ";
-		printInfix(tree->right);
+		if (tree != nullptr)
+		{
+			printPrefix(tree->left);
+			std::cout << tree->field << " ";
+			printPrefix(tree->right);
+		}
+	}
+	else
+	{
+		std::cout << std::endl << "Error! Tree is empty!" << std::endl;
 	}
 }
