@@ -46,6 +46,7 @@ template <typename T>
 Stack<T>::~Stack()
 {
 	delete[] p_Stack;
+	p_Stack = nullptr;
 }
 
 template <typename T>
