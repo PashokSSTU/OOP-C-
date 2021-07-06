@@ -16,8 +16,9 @@ public:
 	~Stack();
 
 	void push(const T); // Добавление элемента в стек
-	T pop(); // Удаление (и вывод) элемента стека
-	int top() const; // Вывод количества заполненных элементов стека
+	T pop(); // Получение последнего элемента с последуюзим удалением
+	T top(); // Получение последнего элемента без удаления
+	int count_top() const; // Вывод количества заполненных элементов стека
 	int size() const; // Вывод максимального размера стека
 	T* getPtr() const; // Получение указателя на стек
 	T peek(int); // Вывод n-ного элемента от вершины
@@ -68,7 +69,13 @@ T Stack<T>::pop()
 }
 
 template <typename T>
-int Stack<T>::top() const
+T Stack<T>::top()
+{
+	return p_Stack[m_top - 1];
+}
+
+template <typename T>
+int Stack<T>::count_top() const
 {
 	return m_top;
 }
