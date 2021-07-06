@@ -7,7 +7,7 @@ class Stack
 {
 private:
 	T* p_Stack; // Указатель на стек
-	const int m_size; // Размер стека
+	int m_size; // Размер стека
 	int m_top; // Уровень заполненности стека
 
 public:
@@ -15,14 +15,16 @@ public:
 	Stack(const Stack<T>&);
 	~Stack();
 
-	void push(const T);
-	T pop();
-	int top() const;
-	int size() const;
-	T* getPtr() const;
-	T peek(int);
-	bool empty() const;
-	void printStack() const;
+	void push(const T); // Добавление элемента в стек
+	T pop(); // Удаление (и вывод) элемента стека
+	int top() const; // Вывод количества заполненных элементов стека
+	int size() const; // Вывод максимального размера стека
+	T* getPtr() const; // Получение указателя на стек
+	T peek(int); // Вывод n-ного элемента от вершины
+	bool empty() const; // Проверка на пустоту
+	void print() const; // Вывод стека вертикально в консоль
+
+	Stack<T>& operator=(const Stack<T>&); // Перегпузка оператора присваивания
 };
 
 template <typename T>
@@ -98,7 +100,7 @@ bool Stack<T>::empty() const
 }
 
 template <typename T>
-void Stack<T>::printStack() const
+void Stack<T>::print() const
 {
 	if (!empty())
 	{
@@ -111,4 +113,20 @@ void Stack<T>::printStack() const
 	{
 		std::cout << "Error! Stack is empty!!!" << std::endl;
 	}
+}
+
+template <typename T>
+Stack<T>& Stack<T>::operator=(const Stack<T>& obj)
+{
+	if (this == &obj) // Исключение самоприсваивания
+	{
+		return *this;
+	}
+	m_size = obj.m_size;
+	m_top = obj.m_top;
+	for (int i = 0; i < m_size; i++)
+	{
+		p_Stack[i] = obj.p_Stack[i];
+	}
+
 }

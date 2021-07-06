@@ -27,6 +27,8 @@ public:
 	T back() const; // Получение последнего элемента очереди
 	int elemcount() const; // Количество элементов в очереди
 	bool empty() const; // Проверка на пустоту
+
+	Queue<T>& operator=(const Queue<T>&);// Перегрузка оператора присваивания
 };
 
 template <typename T>
@@ -177,6 +179,22 @@ bool Queue<T>::empty() const
 	return m_count == 0;
 }
 
+template <typename T>
+Queue<T>& Queue<T>::operator=(const Queue<T>& obj)
+{
+	if (this == &obj) // Исключение самоприсваивания
+	{
+		return *this;
+	}
+	m_size = obj.m_size;
+	m_count = obj.m_count;
+	m_begin = obj.m_begin;
+	m_end = obj.m_end;
+	for (int i = 0; i < m_size; i++)
+	{
+		p_queue[i] = obj.p_queue[i];
+	}
+}
 
 
 
